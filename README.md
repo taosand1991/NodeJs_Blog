@@ -6,7 +6,8 @@ This is a MERN stack with full authentication
 
 ### USAGE :
 
-There are two folders inthe project, which is backend and frontend folder
+### There are two folders inthe project, which is backend and frontend folder
+
 **_*CD into backend folder which contains the node js server and run:*_**
 
 ### `npm run dev`
