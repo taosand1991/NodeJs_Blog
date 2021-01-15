@@ -1,6 +1,7 @@
 const Post = require("../models/Post");
 
 const getPost = async (req, res) => {
+  console.log('getting result now ')
   try {
     const post = await Post.find({}).populate({
       path: "author category",

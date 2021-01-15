@@ -16,10 +16,11 @@ import PostDetail from "./PostDetail";
 import PasswordChange from "./PasswordChange";
 import ResetPassword from "./ResetPassword";
 import CompleteReset from "./CompleteReset";
+import Twitter from "./Twitter";
 
 class MainContainer extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       posts: [],
       categories: [],
@@ -101,6 +102,7 @@ class MainContainer extends Component {
             <Route path="/edit/:id" component={EditPost} />
             <Route path="/logout" component={Logout} />
             <Route path="/news" component={Posts} />
+            <Route path="/auth/social/callback/:token" component={Twitter} />
             <Route path="/" component={LandingPage} />
             <Redirect to="/" />
           </Switch>

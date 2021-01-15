@@ -2,7 +2,7 @@ const express = require("express");
 const route = express.Router();
 
 const getUser_list = require("../usersRoute.js/getUser");
-const createUser_list = require("../usersRoute.js/createUser");
+const createUser_list = require("../usersRoute.js/createuser");
 const changePassword = require("../usersRoute.js/changePassword");
 
 route.get("/", getUser_list);

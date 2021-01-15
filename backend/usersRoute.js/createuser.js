@@ -39,7 +39,7 @@ module.exports = async (req, res, next) => {
             username: user.username,
           };
           const token = jwt.sign(payload, privateKey, {
-            expiresIn: "1h",
+            expiresIn: "3m",
           });
           res.status(201).json({
             message: "user created",

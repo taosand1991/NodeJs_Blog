@@ -1,7 +1,9 @@
 const Post = require("../models/Post");
 const jwt = require("jsonwebtoken");
+const pusher = require("../pusherFiles/pusher");
 
 module.exports = async (req, res) => {
+  const socketId = req.body.socket_id;
   try {
     const post = await Post.findOne({ title: req.body.title });
     if (post) {
@@ -17,13 +19,28 @@ module.exports = async (req, res) => {
           message: "Anonymous user, Authentication failed",
         });
       }
-      const posts = await Post.create({
+      let posts = await Post.create({
         author: token.user_id,
         title: req.body.title,
         category: req.body.category,
         body: req.body.body,
         image: req.file.originalname,
       });
+
+      posts = await posts
+        .populate({
+          path: "author category",
+          select: "username email name",
+        })
+        .execPopulate();
+      pusher.trigger(
+        "create-post",
+        "create",
+        {
+          posts,
+        },
+        socketId
+      );
       return res.status(201).json({
         posts,
       });

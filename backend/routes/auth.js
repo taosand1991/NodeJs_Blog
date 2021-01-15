@@ -20,7 +20,7 @@ route.post("/password", async (req, res) => {
       email: user.email,
     };
     const token = jwt.sign(payload, process.env.RESET_PASSWORD_KEY, {
-      expiresIn: "1m",
+      expiresIn: "30m",
     });
 
     await User.findByIdAndUpdate(user._id, {

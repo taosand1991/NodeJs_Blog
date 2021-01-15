@@ -3,7 +3,7 @@ import Input from "../refactors/Input";
 import Button from "../refactors/Button";
 import { MDBAnimation } from "mdbreact";
 import { ToastContainer, toast, Bounce, Flip } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
 import apiCall from "../refactors/apiCalls";
 import axios from "axios";
@@ -107,6 +107,16 @@ class Login extends Component {
     }
   };
 
+getSocialLink = async(social_provider) => {
+    try {
+      if(social_provider === 'twitter') return window.open("http://localhost:5000/social/auth/twitter", "_self");
+      else if(social_provider === 'google') return window.open("http://localhost:5000/social/auth/google", "_self");
+      else if(social_provider === 'github') return window.open("http://localhost:5000/social/auth/github", "_self");
+    } catch (e) {
+      console.log(e.response.data)
+    }
+}
+
   render() {
     const {
       login,
@@ -187,6 +197,12 @@ class Login extends Component {
                         <Link to="/reset/password">forgot password?</Link>
                       </div>
                     </form>
+                    <h5 className='text-center mt-2 mb-2'>OR</h5>
+                    <div className='text-center mt-2'>
+                      <button onClick={() => this.getSocialLink('twitter')} className='btn btn-twitter'>sign in with twitter <i className="fa fa-twitter"/></button>
+                      <button onClick={() => this.getSocialLink('google')} className='btn btn-google mb-2'>sign in with google <i className="fa fa-google"/></button>
+                      <button onClick={() => this.getSocialLink('github')} className='btn btn-github mb-2'>sign in with github <i className="fa fa-github"/></button>
+                    </div>
                   </MDBAnimation>
                 </div>
               )}

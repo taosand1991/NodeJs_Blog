@@ -19,7 +19,7 @@ route.post("/", async (req, res) => {
               email: user.email,
             };
             const token = jwt.sign(payload, process.env.SECRET_KEY, {
-              expiresIn: "1h",
+              expiresIn: "3m",
             });
             return res.status(200).json({
               user,
